@@ -7,7 +7,7 @@
     using System.Net.Http;
     using Newtonsoft.Json;
     using System.Text;
-    using System;
+    using ModelClasses;
 
     public class IntegrationTestModelClassAPI
     {
@@ -48,7 +48,7 @@
             {
                 //Act
                 var response = await client.PostAsync("/api/calc/add", new StringContent(
-                    JsonConvert.SerializeObject(new ModelClasses.Calculator() { n1=2, n2=1 }), 
+                    JsonConvert.SerializeObject(new Calculator() { n1=2, n2=1 }), 
                     Encoding.UTF8, "application/json"));
                 response.EnsureSuccessStatusCode();
 
