@@ -8,7 +8,7 @@
 
     public class TestClientProvider : IDisposable
     {
-        private TestServer Server;
+        private readonly TestServer Server;
 
         public HttpClient Client { get; private set; }
 
