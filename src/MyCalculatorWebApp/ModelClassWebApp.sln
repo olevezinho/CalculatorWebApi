@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28307.271
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ModelClassWebApp.Service", "MyCalculatorWebApp\ModelClassWebApp.Service.csproj", "{6F251430-E48E-4113-9499-2BAA9F192143}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ModelClassWebApp.Service", "MyCalculatorWebApp\ModelClassWebApp.Service.csproj", "{6F251430-E48E-4113-9499-2BAA9F192143}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XUnitIntegrationTest", "XUnitIntegrationTest\XUnitIntegrationTest.csproj", "{78C18741-BF10-4416-9373-EBA57E52FBCA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "XUnitIntegrationTest.Tests", "XUnitIntegrationTest\XUnitIntegrationTest.Tests.csproj", "{78C18741-BF10-4416-9373-EBA57E52FBCA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
