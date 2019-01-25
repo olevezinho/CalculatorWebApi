@@ -6,7 +6,7 @@
     using System;
     using System.Net.Http;
 
-    public class TestClientProvider : IDisposable
+    public class TestClientProvider : IDisposable 
     {
         private readonly TestServer Server;
 

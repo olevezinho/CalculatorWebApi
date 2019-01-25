@@ -20,8 +20,6 @@ namespace XUnitIntegrationTest
         /// <param name="httpStatusCode"></param>
         [Theory]
         [InlineData(HttpStatusCode.OK)]
-        [InlineData(HttpStatusCode.NotFound)]
-        [InlineData(HttpStatusCode.Redirect)]
         public async Task TestForResponseType(HttpStatusCode httpStatusCode)
         {
             //Arrange
@@ -53,29 +51,38 @@ namespace XUnitIntegrationTest
 
         //[Fact]
 
-        [Theory]
-        [InlineData(1, 1)]
-        [InlineData(0, 0)]
-        public async Task TestPost(int n1, int n2)
-        {
-            //Arrange
-            using (var client = new TestClientProvider().Client)
-            {
-                //Act
-                var Initial = DateTime.UtcNow;
-                var response = await client.PostAsync("/api/calc/add", new StringContent(
-                    JsonConvert.SerializeObject(new Calculator().Add(n1,n2)), 
-                    Encoding.UTF8, "application/json"));
-                var dif = DateTime.UtcNow - Initial;
+        //[Theory]
+        //[InlineData("GET")]
+        //[InlineData("POST")]
+        //public async Task TestPost(string method)
+        //{
+        //    //Arrange
+        //    using (var client = new TestClientProvider().Client)
+        //    {
+        //        //Act
+        //        //var Initial = DateTime.UtcNow;
+        //        //var response = await client.PostAsync("/api/calc/add", new StringContent(
+        //        //    JsonConvert.SerializeObject(new Calculator()), 
+        //        //    Encoding.UTF8, "application/json"));
+        //        //var dif = DateTime.UtcNow - Initial;
 
-                if (dif.TotalMilliseconds < 100)
-                {
-                    response.StatusCode.Should().Be(HttpStatusCode.OK);
-                }
+        //        //if (dif.TotalMilliseconds < 100)
+        //        //{
+        //        //    response.StatusCode.Should().Be(HttpStatusCode.OK);
+        //        //}
 
-                //Assert
-                response.StatusCode.Should().Be(HttpStatusCode.OK);
-            }
-        }
+        //        //Assert
+        //        //response.StatusCode.Should().Be(HttpStatusCode.OK);
+
+        //        //var request = new HttpRequestMessage(new HttpMethod(method), "/");
+
+        //        //var response = await client.SendAsync(request);
+
+        //        //Assert.Equal(HttpStatusCode.OK, response.StatusCode);
+        //        //var content = await response.Content.ReadAsStringAsync();
+        //        //Assert.Equal("", content);
+        //        //Assert.False(response.Headers.Contains("Server"), "Should not contain server header");
+        //    }
+        //}
     }
 }
