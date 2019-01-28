@@ -17,7 +17,6 @@
             Server = new TestServer(new WebHostBuilder().UseStartup<Startup>());
 
             Client = Server.CreateClient();
-            Client.BaseAddress = new Uri("http://localhost:5000");
         }
 
         public void Dispose()
