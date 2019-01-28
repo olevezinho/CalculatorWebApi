@@ -42,12 +42,20 @@ namespace XUnitIntegrationTest
             using (var client = new TestClientProvider().Client)
             {
                 //Act
+                var Initial = DateTime.UtcNow;
                 var response = await client.PostAsync($"/api/calc/add/{n1}/{n2}", new StringContent(
                     JsonConvert.SerializeObject(new Calculator().Add(n1, n2)),
                     Encoding.UTF8, "application/json"));
                 response.EnsureSuccessStatusCode();
+                var dif = DateTime.Now - Initial;
+
                 //Assert
-                response.StatusCode.Should().Be(HttpStatusCode.OK);
+                if (dif.TotalSeconds < 1)
+                    response.StatusCode.Should().Be(HttpStatusCode.OK);
+                else
+                {
+                    response.StatusCode.Should().Be(HttpStatusCode.NotFound);
+                }
             }
         }
 
