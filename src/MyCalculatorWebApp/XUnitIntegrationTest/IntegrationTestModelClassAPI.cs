@@ -12,7 +12,7 @@ namespace XUnitIntegrationTest
     using System.Text;
     using ModelClasses;
     using System;
-    using Microsoft.AspNetCore.Mvc;
+    using Newtonsoft.Json.Linq;
 
     /// <summary>Integration test on the web api</summary>
     public class IntegrationTestModelClassAPI
@@ -35,26 +35,31 @@ namespace XUnitIntegrationTest
         }
 
         [Theory]
-        [InlineData(1, 1)]
-        public async Task TestForResponseTypePOST(int n1, int n2)
+        [InlineData(1, 1, 2)]
+        public async Task TestForResponseTypePOST(int n1, int n2, int result)
         {
             //Arrange
-            using (var client = new TestClientProvider().Client)
+            using (var client = new TestClientProvider().Client)//initializes the client
             {
                 //Act
                 var Initial = DateTime.UtcNow;
-                var response = await client.PostAsync($"/api/calc/add/{n1}/{n2}", new StringContent(
+                var request = await client.PostAsync($"/api/calc/add/{n1}/{n2}", new StringContent(
                     JsonConvert.SerializeObject(new Calculator().Add(n1, n2)),
                     Encoding.UTF8, "application/json"));
-                response.EnsureSuccessStatusCode();
+                request.EnsureSuccessStatusCode();
                 var dif = DateTime.Now - Initial;
+                //Test for the response
+                var response = request.Content.ReadAsStringAsync().Result;
 
                 //Assert
-                if (dif.TotalSeconds < 1)
-                    response.StatusCode.Should().Be(HttpStatusCode.OK);
+                if (dif.TotalMilliseconds < 1000)
+                {
+                    request.StatusCode.Should().Be(HttpStatusCode.OK);
+                    Assert.Equal(result.ToString(), response);
+                }    
                 else
                 {
-                    response.StatusCode.Should().Be(HttpStatusCode.NotFound);
+                    request.StatusCode.Should().Be(HttpStatusCode.NotFound);
                 }
             }
         }
