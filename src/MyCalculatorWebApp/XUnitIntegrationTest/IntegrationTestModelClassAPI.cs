@@ -12,7 +12,8 @@ namespace XUnitIntegrationTest
     using System.Text;
     using ModelClasses;
     using System;
-    using Newtonsoft.Json.Linq;
+    using OpenQA.Selenium;
+    using OpenQA.Selenium.Chrome;
 
     /// <summary>Integration test on the web api</summary>
     public class IntegrationTestModelClassAPI
@@ -39,7 +40,7 @@ namespace XUnitIntegrationTest
         public async Task TestForResponseTypePOST(int n1, int n2, int result)
         {
             //Arrange
-            using (var client = new TestClientProvider().Client)//initializes the client
+            using (var client = new TestClientProvider().Client) //Initializes the client
             {
                 //Act
                 var Initial = DateTime.UtcNow;
@@ -47,15 +48,15 @@ namespace XUnitIntegrationTest
                     JsonConvert.SerializeObject(new Calculator().Add(n1, n2)),
                     Encoding.UTF8, "application/json"));
                 request.EnsureSuccessStatusCode();
-                var dif = DateTime.Now - Initial;
                 //Test for the response
                 var response = request.Content.ReadAsStringAsync().Result;
+                var dif = DateTime.Now - Initial;
 
                 //Assert
                 if (dif.TotalMilliseconds < 1000)
                 {
-                    request.StatusCode.Should().Be(HttpStatusCode.OK);
-                    Assert.Equal(result.ToString(), response);
+                    request.StatusCode.Should().Be(HttpStatusCode.OK); //Asserting that the request returns a 200 OK 
+                    Assert.Equal(result.ToString(), response); //Asserting that the calculation of the Calculator.Add() method is as expected
                 }    
                 else
                 {
@@ -63,6 +64,20 @@ namespace XUnitIntegrationTest
                 }
             }
         }
+
+        [Fact]
+        public async Task TestingModelClassWebApp()
+        {
+            using (var client = new TestClientProvider().Client) //Initializes the client
+            {
+                IWebDriver driver = new ChromeDriver(@"C:\Users\filip\Downloads\chromedriver_win32");
+                var request = await client.PostAsync("/api/calc/add/", new StringContent(
+                    JsonConvert.SerializeObject(new Calculator().Add(1,2)),
+                    Encoding.UTF8, "application/json"));
+                request.StatusCode.Should().Be(HttpStatusCode.NotFound);
+            }
+        }
+
 
         //[Fact]
         //[Theory]
