@@ -1,8 +1,0 @@
-version: '3.4'
-
-services:
-  modelclasswebapp.service:
-    image: ${DOCKER_REGISTRY-}modelclasswebappservice
-    build:
-      context: .
-      dockerfile: mycalculatorwebapp/Dockerfile

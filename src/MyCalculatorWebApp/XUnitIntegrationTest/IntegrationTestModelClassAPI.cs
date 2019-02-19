@@ -68,14 +68,8 @@ namespace XUnitIntegrationTest
         [Fact]
         public async Task TestingModelClassWebApp()
         {
-            using (var client = new TestClientProvider().Client) //Initializes the client
-            {
-                IWebDriver driver = new ChromeDriver(@"C:\Users\filip\Downloads\chromedriver_win32");
-                var request = await client.PostAsync("/api/calc/add/", new StringContent(
-                    JsonConvert.SerializeObject(new Calculator().Add(1,2)),
-                    Encoding.UTF8, "application/json"));
-                request.StatusCode.Should().Be(HttpStatusCode.NotFound);
-            }
+            //Arrange
+            IWebDriver driver = new ChromeDriver(@"C:\Selenium\chromedriver_win32");          
         }
 
 
