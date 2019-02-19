@@ -12,8 +12,6 @@ namespace XUnitIntegrationTest
     using System.Text;
     using ModelClasses;
     using System;
-    using OpenQA.Selenium;
-    using OpenQA.Selenium.Chrome;
 
     /// <summary>Integration test on the web api</summary>
     public class IntegrationTestModelClassAPI
@@ -65,12 +63,12 @@ namespace XUnitIntegrationTest
             }
         }
 
-        [Fact]
-        public async Task TestingModelClassWebApp()
-        {
-            //Arrange
-            IWebDriver driver = new ChromeDriver(@"C:\Selenium\chromedriver_win32");          
-        }
+        //[Fact]
+        //public async Task TestingModelClassWebApp()
+        //{
+        //    //Arrange
+        //    IWebDriver driver = new ChromeDriver(@"C:\Selenium\chromedriver_win32");          
+        //}
 
 
         //[Fact]
