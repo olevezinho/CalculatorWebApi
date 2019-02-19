@@ -5,6 +5,10 @@
     <AspNetCoreHostingModel>InProcess</AspNetCoreHostingModel>
   </PropertyGroup>
 
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DocumentationFile>C:\Users\filip\source\repos\dissertation-follow-up\src\MyCalculatorWebApp\MyCalculatorWebApp\ModelClassWebApp.Service.xml</DocumentationFile>
+  </PropertyGroup>
+
   <ItemGroup>
     <PackageReference Include="FCP.Swashbuckle.AspNetCore.SwaggerGen" Version="1.1.1" />
     <PackageReference Include="Microsoft.AspNetCore.App" />
