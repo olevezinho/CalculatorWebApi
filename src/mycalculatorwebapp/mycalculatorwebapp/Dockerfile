@@ -1,12 +1,19 @@
-﻿FROM microsoft/dotnet:sdk
+﻿FROM microsoft/dotnet:2.2-aspnetcore-runtime AS base
 WORKDIR /app
+EXPOSE 80
 
-#copy csproj and restore as distinct layers
+FROM microsoft/dotnet:2.2-sdk AS build
+WORKDIR /src/mycalculatorwebapp/
 COPY *.csproj ./
-RUN dotnet restore -nowarn:msb3202,nu1503 -p:RestoreUseSkipNonexistentTargets=false
-#RUN dotnet restore --source http://localhost:8082/nexus/service/local/nuget/nuget-public/
+RUN dotnet restore   --source http://192.168.12.22:8082/nexus/service/local/nuget/nuget-public/
+COPY . .
+WORKDIR /src/mycalculatorwebapp/
+RUN dotnet build  -c Release -o /app
 
-# copy and build everything else
-COPY . ./
-RUN dotnet publish -c Release -o out
+FROM build AS publish
+RUN dotnet publish -c Release -o /app
+
+FROM base AS final
+WORKDIR /app
+COPY --from=publish /app .
 ENTRYPOINT ["dotnet","ModelClassWebApp.Service.dll"]
