@@ -31,7 +31,7 @@
                     Contact = new Contact
                     {
                         Name = "Filipe Costa",
-                        Url = "url"
+                        Url = "http://localhost"
                     }
                 });
             });
