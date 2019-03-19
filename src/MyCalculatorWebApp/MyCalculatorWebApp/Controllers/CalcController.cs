@@ -4,6 +4,7 @@
     using Microsoft.AspNetCore.Mvc;
     using ModelClasses;
 
+    /// <summary>Calculator controller class: Two methods</summary>
     [Produces("application/json")]
     [Route("api/[controller]")]
     [ApiController]
