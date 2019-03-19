@@ -4,6 +4,9 @@
         <name>ModelClassWebApp.Service</name>
     </assembly>
     <members>
+        <member name="T:MyCalculatorWebApp.Controllers.CalcController">
+            <summary>Calculator controller class: Two methods</summary>
+        </member>
         <member name="M:MyCalculatorWebApp.Controllers.CalcController.Get">
             <summary>
             Retrieves the list of values
@@ -17,6 +20,38 @@
             <param name="n1"></param>
             <param name="n2"></param>
             <returns>200 OK; 404 Bad Request</returns>
+        </member>
+        <member name="T:MyCalculatorWebApp.Program">
+            <summary>Class program</summary>
+        </member>
+        <member name="M:MyCalculatorWebApp.Program.Main(System.String[])">
+            <summary>Defines the entry point of the application.</summary>
+            <param name="args">The arguments.</param>
+        </member>
+        <member name="M:MyCalculatorWebApp.Program.CreateWebHostBuilder(System.String[])">
+            <summary>Creates the web host builder.</summary>
+            <param name="args">The arguments.</param>
+            <returns></returns>
+        </member>
+        <member name="T:MyCalculatorWebApp.Startup">
+            <summary>Class startup</summary>
+        </member>
+        <member name="M:MyCalculatorWebApp.Startup.#ctor(Microsoft.Extensions.Configuration.IConfiguration)">
+            <summary>Initializes a new instance of the <see cref="T:MyCalculatorWebApp.Startup"/> class.</summary>
+            <param name="configuration">The configuration.</param>
+        </member>
+        <member name="P:MyCalculatorWebApp.Startup.Configuration">
+            <summary>Gets the configuration.</summary>
+            <value>The configuration.</value>
+        </member>
+        <member name="M:MyCalculatorWebApp.Startup.ConfigureServices(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>Configures the services.</summary>
+            <param name="services">The services.</param>
+        </member>
+        <member name="M:MyCalculatorWebApp.Startup.Configure(Microsoft.AspNetCore.Builder.IApplicationBuilder,Microsoft.AspNetCore.Hosting.IHostingEnvironment)">
+            <summary>Configures the specified application.</summary>
+            <param name="app">The application.</param>
+            <param name="env">The env.</param>
         </member>
     </members>
 </doc>
