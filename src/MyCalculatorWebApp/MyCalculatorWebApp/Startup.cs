@@ -12,9 +12,11 @@
     {
         /// <summary>Initializes a new instance of the <see cref="Startup"/> class.</summary>
         /// <param name="configuration">The configuration.</param>
-        public Startup(IConfiguration configuration)
+        private readonly IHostingEnvironment hosting;
+        public Startup(IConfiguration configuration , IHostingEnvironment _hosting)
         {
             Configuration = configuration;
+            hosting = _hosting;
         }
 
         /// <summary>Gets the configuration.</summary>
@@ -37,7 +39,7 @@
                 c.SwaggerDoc("v1",
                 new Info
                 {
-                    Title = "Calculator Web App",
+                    Title = "Calculator Web App" + hosting.EnvironmentName,
                     Version = "v1",
                     Description = "Web API example, created with ASP.NET CORE",
                     Contact = new Contact
