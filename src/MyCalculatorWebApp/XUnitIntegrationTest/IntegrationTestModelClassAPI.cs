@@ -51,15 +51,11 @@ namespace XUnitIntegrationTest
                 var dif = DateTime.Now - Initial;
 
                 //Assert
-                if (dif.TotalMilliseconds < 1000)
+                if (dif.TotalSeconds < 2)
                 {
                     request.StatusCode.Should().Be(HttpStatusCode.OK); //Asserting that the request returns a 200 OK 
                     Assert.Equal(result.ToString(), response); //Asserting that the calculation of the Calculator.Add() method is as expected
                 }    
-                else
-                {
-                    request.StatusCode.Should().Be(HttpStatusCode.NotFound);
-                }
             }
         }
 

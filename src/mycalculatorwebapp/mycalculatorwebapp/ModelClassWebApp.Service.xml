@@ -36,7 +36,7 @@
         <member name="T:MyCalculatorWebApp.Startup">
             <summary>Class startup</summary>
         </member>
-        <member name="M:MyCalculatorWebApp.Startup.#ctor(Microsoft.Extensions.Configuration.IConfiguration)">
+        <member name="F:MyCalculatorWebApp.Startup.hosting">
             <summary>Initializes a new instance of the <see cref="T:MyCalculatorWebApp.Startup"/> class.</summary>
             <param name="configuration">The configuration.</param>
         </member>
