@@ -21,8 +21,8 @@
 
         public void Dispose()
         {
-            Server?.Dispose();
             Client?.Dispose();
+            Server?.Dispose();
         }
     }
 }
