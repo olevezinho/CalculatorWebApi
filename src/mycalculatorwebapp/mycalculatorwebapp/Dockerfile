@@ -5,7 +5,7 @@ EXPOSE 80
 FROM microsoft/dotnet:2.2-sdk AS build
 WORKDIR /src/mycalculatorwebapp/
 COPY *.csproj ./
-RUN dotnet restore --source http://localhost:8081/nexus/service/local/nuget/nuget-public/
+RUN dotnet restore --source http://192.168.1.66:8081/nexus/service/local/nuget/nuget-public/
 COPY . .
 WORKDIR /src/mycalculatorwebapp/
 RUN dotnet build  -c Release -o /app
