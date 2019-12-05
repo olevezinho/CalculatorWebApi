@@ -2,10 +2,7 @@ version: '3.4'
 
 services:
    nginx:
-     image: olevezinho/loadbalancer
-     environment:
-      - SA_PASSWORD="DockerSql2017!""
-      - ACCEPT_EULA="Y"
+     image: localhost:5000/loadbalancer
      build:
        context: ../nginx
      depends_on:
@@ -16,7 +13,7 @@ services:
 
    app:
      working_dir: /app
-     image: olevezinho/mycalculatorwebapp:1.0.0.1
+     image: localhost:5000/mycalculatorwebapp
      environment:
       - ASPNETCORE_ENVIRONMENT=test
      build:
@@ -26,7 +23,7 @@ services:
 
    app2:
      working_dir: /app
-     image: olevezinho/mycalculatorwebapp:1.0.0.1
+     image: localhost:5000/mycalculatorwebapp
      environment:
       - ASPNETCORE_ENVIRONMENT=prod
      build:
