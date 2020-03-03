@@ -10,61 +10,47 @@ These instructions will get you a copy of the project up and running on your loc
 
 ### Prerequisites
 
-You will be needing docker if you need to run this project
+You will be needing docker if you need to run this project and dotnet core cli if you need to build it.
 
-### Installing
+### Building the project
 
 A step by step series of examples that tell you how to get a development env running
 
-Say what the step will be
+To build the solution:
 
 ```
-Give the example
-```
-
-And repeat
-
-```
-until finished
+dotnet build [solutionName]
 ```
 
 End with an example of getting some data out of the system or using it for a little demo
 
 ## Running the tests
 
-Explain how to run the automated tests for this system
+If you need to run the automated tests, just go for it! It's not that hard, you can find all the necessary information on microsoft's official documentation.
 
 ### Break down into end to end tests
 
 Explain what these tests test and why
 
 ```
-Give an example
-```
-
-### And coding style tests
-
-Explain what these tests test and why
-
-```
-Give an example
+dotnet test [testProjectName]
 ```
 
 ## Deployment
 
-* [Docker hub](https://hub.docker.com/r/olevezinho/calculator) - The deployment is carefully described on my public repository
+* [Docker hub](https://hub.docker.com/r/olevezinho/calculator) - The deployment is carefully described on my public Docker repository
 
 ## Built With
 
 * [.NET Core 2.2](https://dotnet.microsoft.com/download/dotnet-core/2.2) - The web framework used
 * [NuGet](https://www.nuget.org/) - Dependency Management
 * [Nexus OSS Repository Manager](https://hub.docker.com/r/sonatype/nexus/tags) - Artifact Storage
-* [Swagger](https://swagger.io/) - Used to generated a documented Web API
+* [Swagger](https://swagger.io/) - Used to generate a documented Web API
 * [Docker](https://www.docker.com/) - Used to containerize the application
 
 ## Contributing
 
-Please read [CONTRIBUTING.md](https://gist.github.com/PurpleBooth/b24679402957c63ec426) for details on our code of conduct, and the process for submitting pull requests to us.
+Please read [CONTRIBUTING.md](https://gitlab.com/Filipe_Costa) for details on our code of conduct, and the process for submitting pull requests to us.
 
 ## Versioning
 
@@ -72,13 +58,13 @@ We use [SemVer](http://semver.org/) for versioning. For the versions available, 
 
 ## Authors
 
-* **Billie Thompson** - *Initial work* - [PurpleBooth](https://github.com/PurpleBooth)
+* **Luis Filipe Costa Brochado** - *Initial work* - [Filipe Costa](https://gitlab.com/Filipe_Costa)
 
 See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
+This project is licensed under the UTAD License - see the [LICENSE.md](LICENSE.md) file for details
 
 ## Acknowledgments
 
