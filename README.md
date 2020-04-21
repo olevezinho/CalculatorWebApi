@@ -34,9 +34,10 @@ End with an example of getting some data out of the system or using it for a lit
 
 If you need to run the automated tests, just go for it! It's not that hard, you can find all the necessary information on microsoft's official documentation.
 
-### Break down into end to end tests
+### Test purposes
 
-Explain what these tests test and why
+These tests were to test the two methods found on the Calculator controller. One test, built with the help of TestServer, tests the POSt action. The other one tests the default GET method.
+These tests can also be made with Postman or from the CLI.
 
 ```
 dotnet test [testProjectName]
