@@ -71,10 +71,11 @@ See also the list of [contributors](https://github.com/your/project/contributors
 
 ## License
 
-This project is licensed under the UTAD License - see the [LICENSE.md](LICENSE.md) file for details
+This project is licensed under the UTAD document publishing License
 
 ## Acknowledgments
 
 * Hat tip to anyone whose code was used
+* [PurpleBooth] (https://gist.github.com/PurpleBooth/109311bb0361f32d87a2) - For the readme template
 * Inspiration
 * etc
