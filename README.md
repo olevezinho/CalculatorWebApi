@@ -76,6 +76,6 @@ This project is licensed under the UTAD document publishing License
 ## Acknowledgments
 
 * Hat tip to anyone whose code was used
-* [PurpleBooth] (https://gist.github.com/PurpleBooth/109311bb0361f32d87a2) - For the readme template
+* [PurpleBooth](https://gist.github.com/PurpleBooth/109311bb0361f32d87a2) - For the readme template
 * Inspiration
 * etc
