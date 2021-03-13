@@ -6,6 +6,7 @@
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
     using Swashbuckle.AspNetCore.Swagger;
+    using static System.Net.WebRequestMethods;
 
     /// <summary>Class startup</summary>
     public class Startup
@@ -29,7 +30,12 @@
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc()
-                .SetCompatibilityVersion(CompatibilityVersion.Version_2_2)
+                .AddMvcOptions(options =>
+                {
+                    options.EnableEndpointRouting = false;
+                }
+)
+                .SetCompatibilityVersion(CompatibilityVersion.Latest)
                 .ConfigureApiBehaviorOptions(options =>
                 {
                     options.SuppressMapClientErrors = true; //removes the full error log
@@ -37,15 +43,15 @@
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1",
-                new Info
+                new Microsoft.OpenApi.Models.OpenApiInfo
                 {
                     Title = "Calculator Web App" + hosting.EnvironmentName,
                     Version = "v1",
                     Description = "Web API example, created with ASP.NET CORE",
-                    Contact = new Contact
+                    Contact = new Microsoft.OpenApi.Models.OpenApiContact
                     {
                         Name = "Filipe Costa",
-                        Url = "http://localhost"
+                        Url = new System.Uri("http://localhost")
                     }
                 });
             });
@@ -68,7 +74,7 @@
             }
 
             //app.UseHttpsRedirection();
-            app.UseMvc( );
+            app.UseMvc();
 
             // Enable middleware to serve generated Swagger as a JSON endpoint.
             app.UseSwagger();
