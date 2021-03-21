@@ -13,9 +13,33 @@
             </summary>
             <returns>200 OK</returns>
         </member>
-        <member name="M:MyCalculatorWebApp.Controllers.CalcController.PostNumbers(System.Int32,System.Int32)">
+        <member name="M:MyCalculatorWebApp.Controllers.CalcController.PostNumbersAdd(System.Int32,System.Int32)">
             <summary>
-            Add two number and return the result
+            Add two numbers and return the result
+            </summary>
+            <param name="n1"></param>
+            <param name="n2"></param>
+            <returns>200 OK; 404 Bad Request</returns>
+        </member>
+        <member name="M:MyCalculatorWebApp.Controllers.CalcController.PostNumbersSub(System.Int32,System.Int32)">
+            <summary>
+            Subtract two numbers and return the result
+            </summary>
+            <param name="n1"></param>
+            <param name="n2"></param>
+            <returns>200 OK; 404 Bad Request</returns>
+        </member>
+        <member name="M:MyCalculatorWebApp.Controllers.CalcController.PostNumbersMul(System.Int32,System.Int32)">
+            <summary>
+            Multiply two numbers and return the result
+            </summary>
+            <param name="n1"></param>
+            <param name="n2"></param>
+            <returns>200 OK; 404 Bad Request</returns>
+        </member>
+        <member name="M:MyCalculatorWebApp.Controllers.CalcController.PostNumbersDiv(System.Int32,System.Int32)">
+            <summary>
+            Divide two numbers and return the result
             </summary>
             <param name="n1"></param>
             <param name="n2"></param>

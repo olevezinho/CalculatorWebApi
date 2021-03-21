@@ -30,23 +30,24 @@ namespace XUnitIntegrationTest
                 response.EnsureSuccessStatusCode();
                 //Assert
                 response.StatusCode.Should().Be(httpStatusCode);
-            }      
+            }
         }
 
         [Theory]
         [InlineData(1, 1, 2)]
-        public async Task TestForResponseTypePOST(int n1, int n2, int result)
+        public async Task TestForResponseTypeAdd(int n1, int n2, int result)
         {
-            //Arrange
+
             using (var client = new TestClientProvider().Client) //Initializes the client
             {
-                //Act
+                //Arrange
                 var Initial = DateTime.UtcNow;
                 var request = await client.PostAsync($"/api/calc/add/{n1}/{n2}", new StringContent(
                     JsonConvert.SerializeObject(new Calculator().Add(n1, n2)),
                     Encoding.UTF8, "application/json"));
                 request.EnsureSuccessStatusCode();
-                //Test for the response
+
+                //Act
                 var response = request.Content.ReadAsStringAsync().Result;
                 var dif = DateTime.Now - Initial;
 
@@ -55,49 +56,89 @@ namespace XUnitIntegrationTest
                 {
                     request.StatusCode.Should().Be(HttpStatusCode.OK); //Asserting that the request returns a 200 OK 
                     Assert.Equal(result.ToString(), response); //Asserting that the calculation of the Calculator.Add() method is as expected
-                }    
+                }
             }
         }
 
-        //[Fact]
-        //public async Task TestingModelClassWebApp()
-        //{
-        //    //Arrange
-        //    IWebDriver driver = new ChromeDriver(@"C:\Selenium\chromedriver_win32");          
-        //}
+        [Theory]
+        [InlineData(1, 1, 0)]
+        public async Task TestForResponseTypeSubtract(int n1, int n2, int result)
+        {
 
+            using (var client = new TestClientProvider().Client) //Initializes the client
+            {
+                //Arrange
+                var Initial = DateTime.UtcNow;
+                var request = await client.PostAsync($"/api/calc/sub/{n1}/{n2}", new StringContent(
+                    JsonConvert.SerializeObject(new Calculator().Subtract(n1, n2)),
+                    Encoding.UTF8, "application/json"));
+                request.EnsureSuccessStatusCode();
 
-        //[Fact]
-        //[Theory]
-        //[InlineData("GET")]
-        //[InlineData("POST")]
-        //public async Task TestPost(/*string method*/)
-        //{
-        //    //Arrange
-        //    using (var client = new TestClientProvider().Client)
-        //    {
-        //        //Act
-        //        var Initial = DateTime.UtcNow;
-        //        var response = await client.PostAsync("/api/calc/add", new StringContent(
-        //            JsonConvert.SerializeObject(new Calculator()),
-        //            Encoding.UTF8, "application/json"));
-        //        var dif = DateTime.UtcNow - Initial;
+                //Act
+                var response = request.Content.ReadAsStringAsync().Result;
+                var dif = DateTime.Now - Initial;
 
-        //        if (dif.TotalMilliseconds < 100)
-        //        {
-        //            response.StatusCode.Should().Be(HttpStatusCode.OK);
-        //        }
+                //Assert
+                if (dif.TotalSeconds < 2)
+                {
+                    request.StatusCode.Should().Be(HttpStatusCode.OK); //Asserting that the request returns a 200 OK 
+                    Assert.Equal(result.ToString(), response); //Asserting that the calculation of the Calculator.Add() method is as expected
+                }
+            }
+        }
 
-        //        //Assert
-        //        response.StatusCode.Should().Be(HttpStatusCode.OK);
+        [Theory]
+        [InlineData(1, 1, 1)]
+        public async Task TestForResponseTypeMultiply(int n1, int n2, int result)
+        {
 
-        //        //var request = new HttpRequestMessage(new HttpMethod(method), "/");
+            using (var client = new TestClientProvider().Client) //Initializes the client
+            {
+                //Arrange
+                var Initial = DateTime.UtcNow;
+                var request = await client.PostAsync($"/api/calc/mul/{n1}/{n2}", new StringContent(
+                    JsonConvert.SerializeObject(new Calculator().Multiply(n1, n2)),
+                    Encoding.UTF8, "application/json"));
+                request.EnsureSuccessStatusCode();
 
-        //        //var response = await client.SendAsync(request);
+                //Act
+                var response = request.Content.ReadAsStringAsync().Result;
+                var dif = DateTime.Now - Initial;
 
-        //        //Assert.Equal(HttpStatusCode.OK, response.StatusCode);
-        //        //var content = await response.Content.ReadAsStringAsync();
-        //        //Assert.Equal("", content);
-        //        //Assert.False(response.Headers.Contains("Server"), "Should not contain server header");
+                //Assert
+                if (dif.TotalSeconds < 2)
+                {
+                    request.StatusCode.Should().Be(HttpStatusCode.OK); //Asserting that the request returns a 200 OK 
+                    Assert.Equal(result.ToString(), response); //Asserting that the calculation of the Calculator.Add() method is as expected
+                }
+            }
+        }
+
+        [Theory]
+        [InlineData(4, 2, 2)]
+        public async Task TestForResponseTypeDivide(int n1, int n2, int result)
+        {
+
+            using (var client = new TestClientProvider().Client) //Initializes the client
+            {
+                //Arrange
+                var Initial = DateTime.UtcNow;
+                var request = await client.PostAsync($"/api/calc/div/{n1}/{n2}", new StringContent(
+                    JsonConvert.SerializeObject(new Calculator().Divide(n1, n2)),
+                    Encoding.UTF8, "application/json"));
+                request.EnsureSuccessStatusCode();
+
+                //Act
+                var response = request.Content.ReadAsStringAsync().Result;
+                var dif = DateTime.Now - Initial;
+
+                //Assert
+                if (dif.TotalSeconds < 2)
+                {
+                    request.StatusCode.Should().Be(HttpStatusCode.OK); //Asserting that the request returns a 200 OK 
+                    Assert.Equal(result.ToString(), response); //Asserting that the calculation of the Calculator.Add() method is as expected
+                }
+            }
+        }
     }
 }

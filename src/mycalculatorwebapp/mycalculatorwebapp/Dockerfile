@@ -1,12 +1,14 @@
 ﻿# Base
+FROM mcr.microsoft.com/dotnet/aspnet:5.0-buster-slim AS base
+#FROM mcr.microsoft.com/dotnet/aspnet:5.0-buster-slim-arm64v8 AS base
 #FROM mcr.microsoft.com/dotnet/aspnet:5.0-buster-slim AS base
-FROM mcr.microsoft.com/dotnet/aspnet:5.0-buster-slim-arm64v8 AS base
 WORKDIR /app
 EXPOSE 80
 
 # SDK
+FROM mcr.microsoft.com/dotnet/sdk:5.0.102-ca-patch-buster-slim AS build
+#FROM mcr.microsoft.com/dotnet/sdk:5.0.201-buster-slim-arm64v8 AS build
 #FROM mcr.microsoft.com/dotnet/sdk:5.0.102-ca-patch-buster-slim AS build
-FROM mcr.microsoft.com/dotnet/sdk:5.0.201-buster-slim-arm64v8 AS build
 WORKDIR /src/mycalculatorwebapp/
 COPY *.csproj ./
 #RUN dotnet restore --source http://192.168.12.32:8081/nexus/service/local/nuget/nuget-public/
@@ -18,8 +20,9 @@ RUN dotnet build -c Release -o /app
 
 # Publish
 FROM build AS publish
-#RUN dotnet publish -r linux-x64 -c Release /p:PublishTrimmed=true -o /app
-RUN dotnet publish -r linux-arm64 -c Release /p:PublishTrimmed=true -o /app
+RUN dotnet publish -r linux-x64 -c Release /p:PublishTrimmed=true -o /app
+#RUN dotnet publish -r linux-arm64 -c Release true /p:PublishTrimmed=true -o /app
+#RUN dotnet publish -r linux-arm -c Release --self-contained true /p:PublishTrimmed=true -o /app
 
 FROM base AS final
 WORKDIR /app
