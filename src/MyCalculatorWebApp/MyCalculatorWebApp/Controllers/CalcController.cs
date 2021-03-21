@@ -36,17 +36,17 @@
         }
 
         /// <summary>
-        /// Add two number and return the result
+        /// Subtract two number and return the result
         /// </summary>
         /// <param name="n1"></param>
         /// <param name="n2"></param>
         /// <returns>200 OK; 404 Bad Request</returns>
         // POST api/values
-        //[HttpPost("sub/{n1}/{n2}")]
-        //public ActionResult<int> PostNumbersSub(int n1, int n2)
-        //{
-        //    Calculator calculator = new Calculator();
-        //    return new ObjectResult(calculator.Add(n1, n2));
-        //}
+        [HttpPost("sub/{n1}/{n2}")]
+        public ActionResult<int> PostNumbersSub(int n1, int n2)
+        {
+            Calculator calculator = new Calculator();
+            return new ObjectResult(calculator.Subtract(n1, n2));
+        }
     }
 }
