@@ -1,0 +1,22 @@
+﻿# Build
+FROM mcr.microsoft.com/dotnet/sdk:5.0.102-ca-patch-buster-slim AS build
+WORKDIR /app
+EXPOSE 80
+
+# Include the following tag on the .csproj
+# <RuntimeIdentifier>linux-arm</RuntimeIdentifier>
+
+# Restore
+COPY *.csproj ./
+#RUN dotnet restore --source http://192.168.12.32:8081/nexus/service/local/nuget/nuget-public/
+RUN dotnet nuget add source http://192.168.1.194:8081/repository/Nuget-Group/index.json -n "Nuget local" -u "admin" -p "39e19b8a-748f-4d85-8a59-e011a1405f74" --store-password-in-clear-text
+#RUN dotnet restore --source http://192.168.1.194:8081/repository/Nuget-Group/index.json
+RUN dotnet restore -r linux-arm --source http://192.168.1.194:8081/repository/Nuget-Group/index.json
+
+COPY . .
+RUN dotnet publish -c Release -r linux-arm --self-contained true /p:PublishTrimmed=true -o /app
+
+FROM mcr.microsoft.com/dotnet/runtime:5.0-buster-slim-arm32v7
+WORKDIR /app
+COPY --from=build /app .
+ENTRYPOINT ["dotnet","ModelClassWebApp.Service.dll"]
